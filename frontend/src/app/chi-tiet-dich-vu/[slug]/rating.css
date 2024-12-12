@@ -1,0 +1,28 @@
+.rating {
+    display: flex;
+    direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffc107;
+}
+.comment-form {
+    background-color: #f9f9f9; /* Màu nền (thay đổi mã màu tùy ý) */
+    padding: 20px; /* Thêm khoảng cách bên trong form */
+    border-radius: 8px; /* Bo góc các cạnh */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng đổ bóng */
+}
+

@@ -11,7 +11,7 @@ Dự án được phát triển bởi PetSisters, đội ngũ tận tâm mang đ
 
 ## Làm sao để clone code ?
 ```
-git clone https://gitlab.com/petsisters80833/chu-prong-pet-store.git
+https://github.com/TranTheVy-Dev/Petsisters.git
 ```
 
 ## Lưu ý:

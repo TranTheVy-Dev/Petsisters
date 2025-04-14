@@ -5,7 +5,7 @@ import useFetchService from "../lib/api_service"; // Import custom hook
 
 const TrangService = () => {
   const { services, loading, error } = useFetchService(); // Sử dụng custom hook
-console.log(services);
+  console.log(services);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -100,9 +100,7 @@ console.log(services);
                     <p>
                       <b>{service.service_name}</b>
                     </p>
-                    <p>
-                      <b>{service.price.toLocaleString()} VNĐ</b>
-                    </p>
+                    <p>{/* <b>{service.price.toLocaleString()} VNĐ</b> */}</p>
                     <Link
                       href={`/chi-tiet-dich-vu/${service.id}`}
                       className="btn border-btn"

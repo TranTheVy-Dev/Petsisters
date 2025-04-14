@@ -350,9 +350,11 @@ export default function ServiceDetail({ params }) {
                     </div>
                   </div>
 
-                  <h4 className="price"> {service.price.toLocaleString()} VNĐ{" "}</h4>
+
+                  {/* <h4 className="price"> {service.price.toLocaleString()} VNĐ{" "}</h4> */}
+                  <h5>Click vào Đăng ký dịch vụ để tham khảo giá</h5>
                   <p>
-                    {service.description}
+               Mô tả: {service.description}
                   </p>
                   <div className="product__details-qty">
                     <Link href="/dat-lich" className="add-btn">
@@ -415,9 +417,6 @@ export default function ServiceDetail({ params }) {
                         </ul>
                       </li>
                     </ul>
-                  </div>
-                  <div className="product__details-checkout">
-                    <span className="title">Đánh Giá</span>
                   </div>
                 </div>
               </div>

@@ -139,7 +139,7 @@ class CustomerController extends Controller
             $customer->delete();
             return $this->successResponse($customer, 200);
         } catch (ModelNotFoundException $e) {
-            return $this->errorResponse("Không tìm thấy sản phẩm với ID: $id", 404);
+            return $this->errorResponse("Không tìm người đùng với ID: $id", 404);
         } catch (Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }

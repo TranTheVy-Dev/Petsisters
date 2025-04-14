@@ -33,7 +33,7 @@ class AppointmentController extends Controller
     public function getAppointmentByIdCustomer($id)
     {
         try {
-            $appointment = Appointment::where("customer_id" , $id)->get();
+            $appointment = Appointment::where("customer_id", $id)->get();
             return $this->successResponse($appointment);
         } catch (ModelNotFoundException $e) {
             return $this->errorResponse("Không tìm thấy đơn hàng với id người dùng  này: $id", 404);
@@ -52,12 +52,19 @@ class AppointmentController extends Controller
                 ->where('pet_weight', $request['pet_weight'])
                 ->first();
             if ($price_list) {
-                $total_price = $day == 6 ? $price_list->price - (($price_list->price / 100) * 10) : $price_list->price;
-                $request['total_price'] = $total_price;
-            }else{
-                $price_list = 0;
+                $total_price = $day == 6
+                    ? $price_list->price - (($price_list->price / 100) * 10)
+                    : $price_list->price;
+                $data = $request->all();
+                $data['total_price'] = $total_price;
+                //laravel không khuyến khích gán giá trị từ input gởi lên bằng cách dưới
+                //cách trên là cách đã sửa hoàn chỉnh
+                // $request['total_price'] = $total_price
+            } else {
+                $price_list = null;
+                return $this->errorResponse('Không tìm thấy bản giá phù hợp', 404);
             }
-            $appointmentRequest = new AppointmentRequest($request->all());
+            $appointmentRequest = new AppointmentRequest($data);
             $validatedData = $appointmentRequest->validate();
             $appointment = $this->model->create($validatedData);
             $service = Service::findOrFail($appointment->service_id);

@@ -1,0 +1,106 @@
+.rating {
+  display: flex;
+  direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffc107;
+}
+.comment-form {
+  background-color: #f9f9f9; /* Màu nền (thay đổi mã màu tùy ý) */
+  padding: 20px; /* Thêm khoảng cách bên trong form */
+  border-radius: 8px; /* Bo góc các cạnh */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng đổ bóng */
+}
+/* Container chung */
+.product-desc-review {
+margin-top: 20px;
+background-color: #f9f9f9; /* Nền nhẹ để phân biệt */
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.product-desc-review-title {
+margin-bottom: 15px;
+}
+
+.product-desc-review-title .title {
+font-size: 1.5rem;
+font-weight: 600;
+color: #333; /* Màu tối hơn cho tiêu đề */
+margin: 0;
+text-transform: capitalize;
+}
+
+/* Nội dung bên trong */
+.left-rc {
+font-size: 1rem;
+color: #555; /* Màu chữ chính */
+line-height: 1.6;
+}
+
+/* Khi không có đánh giá */
+.left-rc p {
+color: #888; /* Màu xám nhẹ */
+font-style: italic;
+}
+
+/* Đánh giá cá nhân */
+.left-rc div {
+margin-bottom: 15px;
+padding: 10px;
+background-color: #fff; /* Nền trắng cho từng đánh giá */
+border: 1px solid #ddd;
+border-radius: 6px;
+}
+
+.left-rc div p {
+margin: 5px 0;
+}
+
+.left-rc div p:first-child {
+font-weight: 600;
+color: #ff9800; /* Màu nhấn cho sao đánh giá */
+}
+
+.left-rc div p:last-child {
+font-size: 0.9rem;
+color: #666;
+}
+/* Ngôi sao đã đánh giá */
+.star {
+  color: #ffcc00; /* Màu vàng cho sao */
+  font-size: 1.2rem;
+  margin-right: 2px;
+}
+
+/* Ngôi sao chưa đánh giá */
+.star.empty {
+  color: #ccc; /* Màu xám cho sao trống */
+}
+
+/* Phần đánh giá cá nhân */
+.review-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #fff; /* Nền trắng */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+

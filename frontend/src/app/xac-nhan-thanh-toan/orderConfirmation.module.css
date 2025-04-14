@@ -1,0 +1,85 @@
+/* orderConfirmation.module.css */
+.order-confirmation {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .h3 {
+    color: #555;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+  }
+  
+  .order-summary {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .order-summary li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .order-summary p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .strong {
+    font-size: 16px;
+    color: #222;
+  }
+  
+  .confirmation-message {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .confirmation-message p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #6200ee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #4b00b9;
+  }
+  
+  .btn:active {
+    background-color: #370082;
+  }
+  

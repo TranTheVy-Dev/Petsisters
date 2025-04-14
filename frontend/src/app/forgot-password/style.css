@@ -1,0 +1,128 @@
+.login-main {
+  background-image: url("https://res.cloudinary.com/dmped9z6o/image/upload/v1734293088/petsisters/images/library/s3f6g0plqznd4n5zpsoq.png"); /* Đường dẫn đến ảnh */
+  background-size: cover; /* Đảm bảo ảnh phủ kín vùng */
+  background-position: center; /* Canh giữa ảnh */
+  min-height: 100vh; /* Chiều cao tối thiểu toàn màn hình */
+  display: flex;
+  align-items: center; /* Canh giữa nội dung theo chiều dọc */
+  justify-content: center; /* Canh giữa nội dung theo chiều ngang */
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3; /* Màu nhạt */
+  border-top: 6px solid #3498db; /* Màu nổi bật */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Hiệu ứng xoay */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Container chính */
+.forgotpass-content {
+  box-shadow: 0 0 10px #d3d3d3;
+  width: 600px; /* Tăng chiều rộng form để phù hợp template */
+  padding: 50px;
+  background: #f8f9fc; /* Màu nền nhẹ hơn */
+  border-radius: 12px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+/* Tiêu đề */
+.forgotpass-text {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #595959;
+  text-align: center;
+}
+
+/* Field input */
+.forgotpass-field {
+  height: 55px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.forgotpass-input {
+  height: 100%;
+  width: 100%;
+  padding-left: 50px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  background: #dde1e7;
+  color: #595959;
+  border-radius: 25px;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
+}
+
+/* Button */
+.forgotpass-button {
+  margin: 15px 0;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #dde1e7;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #595959;
+  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
+}
+
+.forgotpass-button:hover {
+  background: #cfd3d8;
+}
+
+/* Sign Up */
+.forgotpass-signup {
+  margin: 10px 0;
+  color: #595959;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Overlay khi loading */
+.forgotpass-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}

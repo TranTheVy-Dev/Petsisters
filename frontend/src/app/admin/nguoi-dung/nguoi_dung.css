@@ -1,0 +1,139 @@
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Loại bỏ khoảng trắng giữa các ô */
+    margin-bottom: 1rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    text-align: center; /* Căn giữa nội dung trong th và td */
+    border: 1px solid #dee2e6; /* Màu của bo viền */
+  }
+  
+  .table th {
+    background-color: #f8f9fa; /* Nền màu sáng cho header */
+    font-weight: bold;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Màu nền sáng cho các hàng chẵn */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e9ecef; /* Màu nền sáng hơn khi di chuột qua */
+  }
+  
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+  }
+  
+  .btn-outline-warning {
+    color: #856404;
+    background-color: transparent;
+    border: 1px solid #ffc107;
+  }
+  
+  .btn-outline-danger {
+    color: #721c24;
+    background-color: transparent;
+    border: 1px solid #dc3545;
+  }
+
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    justify-content: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination a,
+  .pagination button {
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #007bff;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .pagination a:hover,
+  .pagination button:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  .pagination .active a,
+  .pagination .active button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  .pagination a.disabled,
+  .pagination button.disabled {
+    color: #6c757d;
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+  }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 400px;
+  padding: 20px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h4 {
+  margin: 0;
+}
+
+.modal-body {
+  margin-top: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-footer .btn {
+  margin-left: 10px;
+}
+
+  
+  

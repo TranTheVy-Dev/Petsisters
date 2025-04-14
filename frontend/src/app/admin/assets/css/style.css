@@ -1,0 +1,95 @@
+[data-bs-theme="dark"] .nav-pills .nav-link.active,[data-bs-theme="dark"] .nav-pills .show>.nav-link{
+  background-color: var(--bs-white);
+  color: black !important;
+}
+.admin-title{
+  color: #0D6EFD;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.btn-zapxje{
+  padding: 5px 20px;
+  color: white;
+  border: 1px solid #d3d3d3;
+  transition: all 0.5s ease;
+}
+.btn-zapxje:hover{
+  color: white;
+
+  transform: scale(1.05);
+}
+.btn-zapxje:active{
+  transform: scale(0.9);
+}
+
+.btn-zapxje-go{
+  background-color: #218838;
+}
+.btn-zapxje-back{
+  background-color: #5A6268;
+}
+
+.image-library-container{
+  position: relative;
+}
+.frame-image-library-item{
+  position: relative;
+  margin-bottom: 10px;
+  height: 200px;
+}
+
+.image-library-item{
+  width: 100%;
+  height: 100%;
+  border: 2px solid #d3d3d3;
+  object-fit: cover;
+}
+
+/* .image-library-item:hover{
+  transform: scale(1.05);
+} */
+
+.btn-delete-image-library{
+  position: absolute;
+  background-color: brown;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  top: -10px;
+  right: -10px;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.btn-delete-image-library-content{
+  z-index: 1;
+  color: white;
+}
+
+.image-library-container:hover .btn-delete-image-library {
+  transition: all 0.5s ease;
+  opacity: 100;
+}
+
+.btn-pagination{
+  width: 40px;
+  height: 40px;
+  color: black;
+  background-color: white;
+  border: 2px solid #d3d3d3;
+}
+.btn-pagination.active{
+  background-color: green;
+  color: white;
+}
+  
+.btn-pagination:hover{
+  background-color: green;
+  color: white;
+}
+
+.ip-zapxje{
+  width: 250px;
+  padding: 0 5px;
+  background-color: white;
+  border: 1px solid #d3d3d3;
+}

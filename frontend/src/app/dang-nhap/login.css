@@ -1,0 +1,127 @@
+.login-main {
+  background-image: url("https://res.cloudinary.com/dmped9z6o/image/upload/v1734293088/petsisters/images/library/s3f6g0plqznd4n5zpsoq.png"); /* Đường dẫn đến ảnh */
+  background-size: cover; /* Đảm bảo ảnh phủ kín vùng */
+  background-position: center; /* Canh giữa ảnh */
+  min-height: 100vh; /* Chiều cao tối thiểu toàn màn hình */
+  display: flex;
+  align-items: center; /* Canh giữa nội dung theo chiều dọc */
+  justify-content: center; /* Canh giữa nội dung theo chiều ngang */
+}
+
+/* Container cho form */
+.content {
+  box-shadow: 0 0 10px #d3d3d3;
+  width: 600px; /* Tăng chiều rộng form để phù hợp template */
+  padding: 50px;
+  background: #f8f9fc; /* Màu nền nhẹ hơn */
+  border-radius: 12px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+/* Tiêu đề form */
+.content .text {
+  font-size: 32px; /* Tăng kích thước tiêu đề */
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Field chứa input */
+.field {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.field .input {
+  width: 100%;
+  height: 50px; /* Tăng chiều cao input */
+  padding: 12px 18px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-appearance: none; /* Ngăn bị bôi đen trên một số trình duyệt */
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff; /* Đảm bảo màu nền trắng */
+}
+
+.field .input:focus {
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(108, 99, 255, 0.5);
+  background-color: #fff; /* Giữ màu nền trắng khi focus */
+}
+
+/* Label cho field */
+.label {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  font-size: 15px;
+  color: #888;
+}
+
+/* Nút quên mật khẩu */
+.forgot-pass {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.forgot-pass a {
+  font-size: 15px;
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+/* Nút submit */
+.button {
+  width: 100%;
+  height: 50px;
+  font-size: 18px; /* Tăng kích thước font của nút */
+  font-weight: 600;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: #5548d9;
+}
+
+/* Phần đăng ký */
+.sign-up {
+  margin-top: 25px;
+  font-size: 15px;
+  color: #555;
+}
+
+.sign-up a {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.sign-up a:hover {
+  text-decoration: underline;
+}
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.general-error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}

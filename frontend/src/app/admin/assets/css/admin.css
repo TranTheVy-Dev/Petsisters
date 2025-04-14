@@ -1,0 +1,24 @@
+/* Định dạng cho button "mắt" */
+.btn-password-toggle {
+  margin: 0 2px !important;
+  padding: 0 5px !important;
+  background: transparent !important;  /* Nền trong suốt */
+  border: none;             /* Không có đường viền */
+  padding: 0;               /* Không có padding */
+  cursor: pointer;         /* Con trỏ chuột sẽ là pointer khi hover */
+  font-size: 20px;  
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển động mượt mà khi hover */
+  border: 1px solid;
+}
+
+/* Thêm hiệu ứng hover cho button mắt */
+.btn-password-toggle:hover {
+  transform: scale(1.2);  /* Phóng to nút khi hover */
+}
+
+/* Định vị nút mắt trong input-group */
+.input-group {
+  position: relative;
+}
+
+

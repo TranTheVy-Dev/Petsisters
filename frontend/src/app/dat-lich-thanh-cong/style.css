@@ -1,0 +1,87 @@
+/* style.css */
+.success-main {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .success-header {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px 0;
+    border-radius: 8px;
+  }
+  
+  .success-title {
+    font-size: 2em;
+    margin: 0;
+  }
+  
+  .success-message {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  .success-details {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .card h2 {
+    text-align: center;
+    font-size: 1.5em;
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .card ul li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card ul li strong {
+    width: 50%;
+  }
+  
+  .card ul li span {
+    text-align: right;
+    width: 50%;
+  }
+  
+  .back-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .back-button:hover {
+    background-color: #45a049;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  

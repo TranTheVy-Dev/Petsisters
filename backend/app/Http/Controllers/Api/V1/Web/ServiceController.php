@@ -48,12 +48,12 @@ class ServiceController extends Controller
     public function creatService(Request $request)
     {
         try {
+            $data =$request->all();
             if ($request->hasFile('image_url')) {
             $path = $request->file('image_url')->store('public/images');
-            var_dump($path);
-            $request['image_url'] = basename($path);
+            $data['image_url'] = basename($path);
             }
-            $servicereq = new ServiceRequest($request->all());
+            $servicereq = new ServiceRequest($data);
             $servicevalidate = $servicereq->validate();
             $servicedata = Service::create($servicevalidate);
             return $this->successResponse($servicedata);

@@ -45,28 +45,28 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         try {
+            $data = $request->all();
             // Xác thực dữ liệu
-            $dateTime = new DateTime($request['appointment_date']);
+            $dateTime = new DateTime($data['appointment_date']);
             $day = $dateTime->format('w');
-            $price_list = PriceList::where('service_id', $request['service_id'])
-                ->where('pet_weight', $request['pet_weight'])
+            $price_list = PriceList::where('service_id', $data['service_id'])
+                ->where('pet_weight', $data['pet_weight'])
                 ->first();
             if ($price_list) {
                 $total_price = $day == 6
                     ? $price_list->price - (($price_list->price / 100) * 10)
                     : $price_list->price;
-                $data = $request->all();
                 $data['total_price'] = $total_price;
-                //laravel không khuyến khích gán giá trị từ input gởi lên bằng cách dưới
+                //laravel không khuyến khích gán giá trị = cách dưới vì request là một đối tượng không phải mảng
                 //cách trên là cách đã sửa hoàn chỉnh
-                // $request['total_price'] = $total_price
+                // $request['total_price'] = $total_price;
             } else {
                 $price_list = null;
                 return $this->errorResponse('Không tìm thấy bản giá phù hợp', 404);
             }
             $appointmentRequest = new AppointmentRequest($data);
             $validatedData = $appointmentRequest->validate();
-            $appointment = $this->model->create($validatedData);
+            $appointment = $this->model->create(attributes: $validatedData);
             $service = Service::findOrFail($appointment->service_id);
             return $this->successResponse([
                 'appointment' => $appointment,

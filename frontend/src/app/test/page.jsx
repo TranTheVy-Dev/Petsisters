@@ -18,6 +18,7 @@ const fetchBlog = async () => {
   const post = await response.json();
   return post.data;
 };
+}
 
 const Blog = () => {
   const [dataPost, setDataPost] = useState([]);

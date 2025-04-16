@@ -66,7 +66,8 @@ class AppointmentController extends Controller
             }
             $appointmentRequest = new AppointmentRequest($data);
             $validatedData = $appointmentRequest->validate();
-            $appointment = $this->model->create(attributes: $validatedData);
+            // $appointment = $this->model->create($validatedData);
+            $appointment = Appointment::create($validatedData);
             $service = Service::findOrFail($appointment->service_id);
             return $this->successResponse([
                 'appointment' => $appointment,

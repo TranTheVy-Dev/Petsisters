@@ -24,8 +24,9 @@ class CreateAppointmentsTable extends Migration
                 'completed',
                 'cancelled'
             ])->default('pending');
-
-            $table->boolean('total_price');
+            //kieu nay gioi han toi da so chi dc 127 hoac  1 hoac 0
+            // $table->boolean('total_price');
+            $table->decimal('total_price',10,2);
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();

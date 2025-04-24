@@ -14,30 +14,30 @@ export const getAllProducts = async () => {
   }
 };
 
-export const addProduct = async (formData) => {
-  try {
-    const response = await axios.post(`${AUTH_API_URL}/product`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    return { data: response.data, error: null };
-  } catch (error) {
-    if (error.response) {
-      console.error("Response Data:", error.response.data); // Dữ liệu phản hồi từ server
-      return {
-        data: null,
-        error: error.response.data,
-      };
-    } else {
-      console.error("Unexpected error:", error.message);
-      return {
-        data: null,
-        error: { error_code: 500, error: "Unexpected error" },
-      };
+  export const addProduct = async (formData) => {
+    try {
+      const response = await axios.post(`${AUTH_API_URL}/product`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return { data: response.data, error: null };
+    } catch (error) {
+      if (error.response) {
+        console.error("Response Data:", error.response.data); // Dữ liệu phản hồi từ server
+        return {
+          data: null,
+          error: error.response.data,
+        };
+      } else {
+        console.error("Unexpected error:", error.message);
+        return {
+          data: null,
+          error: { error_code: 500, error: "Unexpected error" },
+        };
+      }
     }
-  }
-};
+  };
 
 export const deleteProduct = async (productId) => {
   try {

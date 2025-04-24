@@ -24,6 +24,9 @@ class AppointmentRequest
             'pet_type' => 'required|string|max:50',
             'pet_weight' => 'required|string|max:50',
             'pet_gender' => 'required|string|max:50',
+            //bug book appointment khi tạo data lưu vô dtb giá bằng 0 nằm ở đây
+            // thiếu request cho total_price
+            'total_price' => 'required|numeric|min:0',
             'appointment_date' => 'required|date|after_or_equal:today',
             'notes' => 'nullable|string',
         ], [

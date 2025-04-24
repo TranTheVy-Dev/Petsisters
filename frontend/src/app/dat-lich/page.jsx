@@ -82,12 +82,16 @@ const Appointment = () => {
         },
       });
       const response = await createAppointment(formData);
-      console.log(response.data);
+
+      let dataAppointment = response.data.data.data.appointment;
+      console.log("====================================");
+      console.log(dataAppointment);
+      console.log("====================================");
       Swal.close();
-      if (response.status === 200) {
-        const appointmentData = response.data.data.appointment;
-        appointmentData.total_price = response.data.data.total_price;
-        appointmentData.service_name = response.data.data.service_name;
+      if (response.data.status === 200) {
+        const appointmentData = dataAppointment;
+        appointmentData.total_price = response.data.data.data.total_price;
+        appointmentData.service_name = response.data.data.data.service_name;
         localStorage.setItem("appointment", JSON.stringify(appointmentData));
         router.push("/dat-lich-thanh-cong");
       }

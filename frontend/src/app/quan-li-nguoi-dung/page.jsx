@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { getOrdersByCustomerId } from "@/app/lib/api_order"; // Đường dẫn file API của bạn
 import "./style.css";
+import { getAllAppointmentBycustomerId } from "../lib/api_appointment";
 const ProfileForm = () => {
   const router = useRouter();
   const [customer, setCustomer] = useState(null);
   const [orders, setOrders] = useState([]);
+  const [appointment, setAppointment] = useState([]);
   const [activeTab, setActiveTab] = useState("info");
   const [errors, setErrors] = useState({});
   const [error, setError] = useState(null);
@@ -56,7 +58,24 @@ const ProfileForm = () => {
         setLoading(false);
       }
     };
-
+    const fetchdatappoint = async () => {
+      setLoading(true);
+      try {
+        const { appointment, error } = await getAllAppointmentBycustomerId(
+          parsedCustomer.id
+        );
+        if (error) {
+          setError(error);
+        } else {
+          setAppointment(appointment);
+        }
+      } catch (error) {
+        setError("We can't GET Data of Appointmant");
+      } finally {
+        setLoading(false);
+      }
+    };
+fetchdatappoint();
     fetchOrders();
   }, [router]);
 
@@ -163,7 +182,7 @@ const ProfileForm = () => {
             }}
             onClick={() => handleTabChange("booking_service")}
           >
-           Đặt Lịch
+            Đặt Lịch
           </li>
           <li
             style={{
@@ -301,7 +320,7 @@ const ProfileForm = () => {
           <div>
             {loading ? (
               <p>Loading Booking...</p>
-            ) : orders.length > 0 ? (
+            ) : appointment.length > 0 ? (
               <table className="table">
                 <thead className="thead">
                   <tr>
@@ -312,19 +331,21 @@ const ProfileForm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order) => (
-                    <tr key={order.id}>
-                      <td>{order.order_code}</td>
+                  {appointment.map((appoint) => (
+                    <tr key={appoint.id}>
+                      <td>{appoint.service.service_name}</td>
                       <td>
-                        {new Date(order.created_at).toLocaleDateString("vi-VN")}
+                        {new Date(appoint.created_at).toLocaleDateString(
+                          "vi-VN"
+                        )}
                       </td>
                       <td>
-                        {order.total_amount.toLocaleString("vi-VN", {
+                        {appoint.total_price.toLocaleString("vi-VN", {
                           style: "currency",
                           currency: "VND",
                         })}
                       </td>
-                      <td>{order.status}</td>
+                      <td>{appoint.status}</td>
                     </tr>
                   ))}
                 </tbody>

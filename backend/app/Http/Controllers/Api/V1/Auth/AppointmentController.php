@@ -31,20 +31,22 @@ class AppointmentController extends Controller
         } catch (Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }
-    }   
+    }
 
-    public function getAppointmentByIdCustomer($id){
-       try {
-        $data = Appointment::where('customer_id',$id)->get();
-        if ($data ->isEmpty()) {
-            return $this->errorResponse("We don't have data with customer have ID: $id",404);
+    public function getAppointmentByIdCustomer($id)
+    {
+        try {
+
+           $data = Appointment::with('service')->where('customer_id',$id)->get();
+            if ($data->isEmpty()) {
+                return $this->errorResponse("We don't have data with customer have ID: $id", 404);
+            }
+            return $this->successResponse($data, 200);
+        } catch (ModelNotFoundException $e) {
+            return $this->errorResponse($e->getMessage(), 404);
+        } catch (Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
         }
-        return $this->successResponse($data, 200);
-       } catch (ModelNotFoundException $e) {
-        return $this->errorResponse($e->getMessage("Not found in this customer data of customer: $id"),404);
-       }catch(Exception $e){
-        return $this->errorResponse($e->getMessage(),500);
-       }
     }
 
     public function store(Request $request): JsonResponse
@@ -93,5 +95,4 @@ class AppointmentController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
-
 }

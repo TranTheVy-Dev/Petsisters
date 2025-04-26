@@ -1,5 +1,4 @@
 import axios from "axios";
-import errors from "formidable/FormidableError";
 import ProductDetail from "../chi-tiet-san-pham/[id]/page";
 
 const url_auth_api = process.env.NEXT_PUBLIC_AUTH_API_URL;
@@ -19,20 +18,19 @@ export const getAllAppointment = async () => {
   }
 };
 // 2. Lấy đơn hàng theo ID người dùng
-export const getAllAppointmentBycustomerId =  async(customerId)=> {
-try {
-  const urlAuth = `${url_auth_api}/appointment/${customerId}`
-  const response = await axios.get(urlAuth)
-  return {appointment: response.data.data ,errors:null}
-} catch (error) {
-  console.error(error.response?.data || error.message)
-  return{
-    appointment: [],
-    error : error.response?.data?.response || 'faild to connect data'
+export const getAllAppointmentBycustomerId = async (customerid) => {
+  try {
+    const url = `${url_auth_api}/appointment/${customerid}`;
+    const response = await axios.get(url);
+    return { appointment: response.data.data, error: null };
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    return {
+      appointment: [],
+      error: error.response?.data?.error || "We can't Get data in this API",
+    };
   }
-}
-}
-
+};
 
 // tạo book lich hen
 export const createAppointment = async (formData) => {

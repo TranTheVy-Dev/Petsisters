@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\AppointmentRequest;
 use App\Http\Controllers\Controller;
@@ -28,12 +31,14 @@ class AppointmentController extends Controller
         } catch (Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }
-    }
-
+    }   
 
     public function getAppointmentByIdCustomer($id){
        try {
         $data = Appointment::where('customer_id',$id)->get();
+        if ($data ->isEmpty()) {
+            return $this->errorResponse("We don't have data with customer have ID: $id",404);
+        }
         return $this->successResponse($data, 200);
        } catch (ModelNotFoundException $e) {
         return $this->errorResponse($e->getMessage("Not found in this customer data of customer: $id"),404);
@@ -41,16 +46,17 @@ class AppointmentController extends Controller
         return $this->errorResponse($e->getMessage(),500);
        }
     }
-    public function store(Request $request)
+
+    public function store(Request $request): JsonResponse
     {
         try {
             $data = $request->all();
             // Xác thực dữ liệu
             $dateTime = new DateTime($data['appointment_date']);
+
             $day = $dateTime->format('w');
-            $price_list =  PriceList::where('pet_weight', $data['pet_weight'])
-            ->where('service_id', $data['service_id'])
-            ->first();
+            $price_list =  $this->priceList($data);
+            var_dump($price_list);
 
             if ($price_list) {
                 $total_price = $day == 6
@@ -87,4 +93,5 @@ class AppointmentController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+
 }

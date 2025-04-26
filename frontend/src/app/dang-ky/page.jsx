@@ -110,6 +110,7 @@ export default function DangKy() {
         "http://localhost:8000/api/web/user/register",
         updatedFormData
       );
+     
 
       Swal.fire({
         icon: "success",

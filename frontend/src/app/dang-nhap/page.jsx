@@ -6,12 +6,15 @@ import "./login.css";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 // import { loadComponents } from "next/dist/server/load-components";
-
+const url_web_api = process.env.NEXT_PUBLIC_WEB_API_URL;
 export default function Login() {
   const router = useRouter();
   const customer = JSON.parse(localStorage.getItem("customer"));
   if (customer) {
-    localStorage.setItem("error", "Bạn đã đăng nhập không thể tiếp tục đăng nhập!")
+    localStorage.setItem(
+      "error",
+      "Bạn đã đăng nhập không thể tiếp tục đăng nhập!"
+    );
     router.push("/error");
   }
 
@@ -45,10 +48,8 @@ export default function Login() {
     if (!isValid) return;
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/web/user/login",
-        { email, password }
-      );
+      const url = `${url_web_api}/user/login`;
+      const response = await axios.post(url, { email, password });
 
       // Lưu thông tin vào localStorage
       localStorage.setItem("token", response.data.token);
@@ -56,8 +57,7 @@ export default function Login() {
 
       const redirectURL = localStorage.getItem("redirectURL") || "/";
       localStorage.removeItem("redirectURL");
-      router.push(redirectURL)
-
+      router.push(redirectURL);
     } catch (err) {
       if (err.response) {
         if (err.response.status === 404) {
@@ -79,7 +79,7 @@ export default function Login() {
           setPasswordError("Mật khẩu không chính xác.");
         } else {
           console.log(err.response);
-          
+
           Swal.fire({
             icon: "error",
             title: "Lỗi!",

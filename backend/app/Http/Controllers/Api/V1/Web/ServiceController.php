@@ -32,6 +32,7 @@ class ServiceController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+
     public function show($id)
     {
         try {
@@ -45,6 +46,7 @@ class ServiceController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+
     public function creatService(Request $request)
     {
         try {
@@ -66,6 +68,7 @@ class ServiceController extends Controller
           return $this->errorResponse($e->getMessage(),500);
         }
     }
+ 
     public function update(Request $request, $id)
     {
         try {
@@ -82,6 +85,7 @@ class ServiceController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+
     public function destroy($id)
     {
         try {

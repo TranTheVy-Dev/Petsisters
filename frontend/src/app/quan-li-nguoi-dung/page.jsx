@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { getOrdersByCustomerId } from "@/app/lib/api_order"; // Đường dẫn file API của bạn
-import"./style.css"
+import "./style.css";
 const ProfileForm = () => {
   const router = useRouter();
   const [customer, setCustomer] = useState(null);
@@ -42,7 +42,9 @@ const ProfileForm = () => {
     const fetchOrders = async () => {
       setLoading(true);
       try {
-        const { orders, error } = await getOrdersByCustomerId(parsedCustomer.id);
+        const { orders, error } = await getOrdersByCustomerId(
+          parsedCustomer.id
+        );
         if (error) {
           setError(error);
         } else {
@@ -152,10 +154,22 @@ const ProfileForm = () => {
           >
             Tài khoản
           </li>
+          <li></li>
           <li
             style={{
               ...styles.menuItem,
-              borderBottom: activeTab === "orders" ? "2px solid #0070f3" : "none",
+              borderBottom:
+                activeTab === "booking_service" ? "2px solid #0070f3" : "none",
+            }}
+            onClick={() => handleTabChange("booking_service")}
+          >
+           Đặt Lịch
+          </li>
+          <li
+            style={{
+              ...styles.menuItem,
+              borderBottom:
+                activeTab === "orders" ? "2px solid #0070f3" : "none",
             }}
             onClick={() => handleTabChange("orders")}
           >
@@ -166,7 +180,11 @@ const ProfileForm = () => {
       </div>
       <div style={styles.formContainer}>
         <h1 style={styles.header}>
-          {activeTab === "info" ? "Thông Tin Tài Khoản" : "Đơn Hàng"}
+          {activeTab === "info"
+            ? "Thông Tin Tài Khoản"
+            : activeTab === "orders"
+            ? "Đơn Hàng"
+            : "Dịch Vụ Đã Đặt Lịch"}
         </h1>
         {activeTab === "info" ? (
           <form style={styles.form} onSubmit={handleSubmit}>
@@ -243,7 +261,7 @@ const ProfileForm = () => {
               Lưu lại
             </button>
           </form>
-        ) : (
+        ) : activeTab === "orders" ? (
           <div>
             {loading ? (
               <p>Loading orders...</p>
@@ -279,12 +297,49 @@ const ProfileForm = () => {
               <p>Người dùng chưa có đơn hàng nào!!</p>
             )}
           </div>
+        ) : activeTab === "booking_service" ? (
+          <div>
+            {loading ? (
+              <p>Loading Booking...</p>
+            ) : orders.length > 0 ? (
+              <table className="table">
+                <thead className="thead">
+                  <tr>
+                    <th>Tên Dịch Vụ</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order.id}>
+                      <td>{order.order_code}</td>
+                      <td>
+                        {new Date(order.created_at).toLocaleDateString("vi-VN")}
+                      </td>
+                      <td>
+                        {order.total_amount.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </td>
+                      <td>{order.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>Người dùng chưa có Dịch vụ nào!!</p>
+            )}
+          </div>
+        ) : (
+          <p>không có dịch vụ được đặt</p>
         )}
       </div>
     </div>
   );
 };
-
 
 const styles = {
   container: {
@@ -300,7 +355,6 @@ const styles = {
     padding: "20px",
     borderRight: "1px solid #ccc",
     textAlign: "center",
-
   },
   avatar: {
     marginBottom: "15px",

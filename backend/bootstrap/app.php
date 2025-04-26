@@ -6,6 +6,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
     dirname(__DIR__)
 ))->bootstrap();
 
+if (!function_exists('app_path')) {
+    function app_path($path = '') {
+        return app()->basePath('app' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+    }
+}
 
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
@@ -44,7 +49,7 @@ $app->routeMiddleware([
 |
 */
 
-    
+
 //đăng ký dịch vụ php mailer
 $app->configure('mail'); // Đảm bảo Lumen tải cấu hình mail từ config/mail.php
 

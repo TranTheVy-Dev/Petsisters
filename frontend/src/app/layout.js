@@ -37,6 +37,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      
       <body className={inter.className}>
         <Providers>
           {/* Chỉ hiển thị Header và Footer nếu không phải là trang Admin */}

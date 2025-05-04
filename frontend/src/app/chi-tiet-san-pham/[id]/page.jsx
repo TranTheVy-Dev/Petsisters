@@ -16,9 +16,6 @@ async function datareview(id) {
     cache: "no-cache",
   });
   const reviews = await response.data.data;
-  console.log("====================================");
-  console.log(reviews);
-  console.log("====================================");
   return reviews;
 }
 export default function ProductDetail({ params }) {
@@ -39,7 +36,6 @@ export default function ProductDetail({ params }) {
       // Unwrap the params (use await for Promise)
       const unwrappedParams = await params;
       const id = unwrappedParams.id;
-
       // Fetch service data
       const getreview = await datareview(id);
       setReview(getreview);
@@ -82,12 +78,7 @@ export default function ProductDetail({ params }) {
           title: 'Thông báo',
           text: 'Bạn Phải đăng nhập mới sử dụng được dịch vụ này ',
           icon: 'info',
-          confirmButtonColor: 'YES',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          showCancelButton: false,
-          focusConfirm: true,
-          focusCancel: false,
+          confirmButtonText: "OK",
           didClose: () => {
             router.push('/dang-nhap')
           }
@@ -145,31 +136,23 @@ export default function ProductDetail({ params }) {
   };
 
   const handleAddToCart = () => {
-    if (quantity <= 0) {
+    if (!token) {
+      localStorage.setItem('redirectURL', window.location.href)
+      Swal.fire({
+        title: 'Thông báo',
+        text: 'Bạn Phải đăng nhập mới được mua hàng',
+        icon: 'error',
+        didClose: () => {
+          router.push('/dang-nhap')
+        }
+      })
+      return false //chưa đăng nhập
+    }
+    else if (quantity <= 0) {
       alert("Please select a valid quantity.");
       return;
     }
-    try {
-      if (!token) {
-        localStorage.setItem("redirectURL", window.location.href);
-        Swal.fire({
-          title: "Thông báo",
-          text: "Bạn Phải đăng nhập mới sử dụng được dịch vụ này ",
-          icon: "info",
-          confirmButtonColor: "YES",
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          showCancelButton: false,
-          focusConfirm: true,
-          focusCancel: false,
-          didClose: () => {
-            router.push("/dang-nhap");
-          },
-        });
-      }
-    } catch (error) {
-      console.log("lỗi rồi cha ơi", error);
-    }
+
     // Dispatch addToCart action with correct quantity
     dispatch(
       addToCart({

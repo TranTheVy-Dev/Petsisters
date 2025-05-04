@@ -12,6 +12,11 @@ const SuccessAppointment = () => {
   useEffect(() => {
     if (appointmentData) {
       setAppointment(appointmentData);
+      Swal.fire({
+        icon: "success",
+        title: "Đặt lịch thành công",
+        html: "Vui Lòng kiểm tra Email để xác nhận thông tin<br><br>Lưu Ý: nếu không thấy Email trong hộp thư đến, vui lòng kiểm tra thư rác nhé",
+      });
     } else {
       Swal.fire({
         icon: "error",

@@ -59,48 +59,68 @@ const Appointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
-    const formData = new FormData();
-    formData.append("customer_id", appointmentData.customer_id);
-    formData.append("pet_name", appointmentData.pet_name);
-    formData.append("service_id", appointmentData.service_id);
-    formData.append("pet_type", appointmentData.pet_type);
-    formData.append("pet_gender", appointmentData.pet_gender);
-    formData.append("pet_age", appointmentData.pet_age);
-    formData.append("pet_weight", appointmentData.pet_weight);
-    formData.append("appointment_date", appointmentData.appointment_date);
-    formData.append("notes", appointmentData.notes);
-    console.log("FormData content:");
-    formData.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
-    try {
+    const customer = localStorage.getItem("customer")
+    if (!customer) {
+      localStorage.setItem('redirectURL', window.location.href)
       Swal.fire({
-        title: "Đang đặt lịch...",
+        title: 'Thông báo',
+        text: 'Bạn Phải đăng nhập mới sử dụng được dịch vụ này ',
+        icon: 'error',
+        didClose: () => {
+          router.push('/dang-nhap')
+        }
+      })
+      return false //chưa đăng nhập
+    }else if (customer){
+      Swal.fire({
+        title: "Đang Xử Lý...",
+        text: "Vui lòng đợi Petsisters trong giây lát",
         allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: false,
         didOpen: () => {
           Swal.showLoading();
         },
       });
-      const response = await createAppointment(formData);
-
-      let dataAppointment = response.data.data.data.appointment;
-      console.log("====================================");
-      console.log(dataAppointment);
-      console.log("====================================");
-      Swal.close();
-      if (response.data.status === 200) {
+    }
+    try {
+      const formPayload = new FormData();
+      formPayload.append("customer_id", appointmentData.customer_id);
+      formPayload.append("pet_name", appointmentData.pet_name);
+      formPayload.append("service_id", appointmentData.service_id);
+      formPayload.append("pet_type", appointmentData.pet_type);
+      formPayload.append("pet_gender", appointmentData.pet_gender);
+      formPayload.append("pet_age", appointmentData.pet_age);
+      formPayload.append("pet_weight", appointmentData.pet_weight);
+      formPayload.append("appointment_date", appointmentData.appointment_date);
+      formPayload.append("notes", appointmentData.notes);
+      console.log("FormData content:");
+      formPayload.forEach((value, key) => {
+        console.log(`${key}:`, value);
+      });
+      const response = await createAppointment(formPayload);
+      if (response?.error?.error_code === 400) {
+        Swal.fire({
+          title: "Có gì đó sai sai",
+          text: response.error.error.appointment_date,
+          icon: "error",
+        });
+      } else if (response.data.status === 200) {
+        Swal.fire({
+          title: "Đặt lịch thành công",
+          icon: "success",
+          html:"Vui Lòng kiểm tra Email để xác nhận thông tin nhé<br><br>Lưu ý: Nếu không tìm thấy Thông tin được gởi qua Hộp thư chính vui lòng kiểm tra trong thư rác nhé"
+        });
+        let dataAppointment = response.data.data.data.appointment;
         const appointmentData = dataAppointment;
         appointmentData.total_price = response.data.data.data.total_price;
         appointmentData.service_name = response.data.data.data.service_name;
         localStorage.setItem("appointment", JSON.stringify(appointmentData));
         router.push("/dat-lich-thanh-cong");
+        Swal.close();
       }
     } catch (error) {
-      console.log(error.response);
-      if (error.response?.data?.error) {
-        setErrors(error.response.data.error);
-      }
-      Swal.close();
+      console.log("Due Bro");
     }
   };
 
@@ -164,7 +184,7 @@ const Appointment = () => {
                   <label>
                     Tên của thú cưng <span className="icon-required">*</span>
                   </label>
-                  <input
+                  <input required
                     type="text"
                     name="pet_name"
                     value={appointmentData.pet_name}
@@ -180,7 +200,7 @@ const Appointment = () => {
                   <label>
                     Loại dịch vụ <span className="icon-required">*</span>
                   </label>
-                  <select
+                  <select required
                     name="service_id"
                     value={appointmentData.service_id || ""}
                     onChange={handleInputChange}
@@ -204,7 +224,7 @@ const Appointment = () => {
                   <label>
                     Loại thú cưng <span className="icon-required">*</span>
                   </label>
-                  <select
+                  <select required
                     name="pet_type"
                     value={appointmentData.pet_type}
                     onChange={handleInputChange}
@@ -223,7 +243,7 @@ const Appointment = () => {
                   <label>
                     Giới tính <span className="icon-required">*</span>
                   </label>
-                  <select
+                  <select required
                     name="pet_gender"
                     value={appointmentData.pet_gender}
                     onChange={handleInputChange}
@@ -243,7 +263,7 @@ const Appointment = () => {
                   <label>
                     Cân nặng <span className="icon-required">*</span>
                   </label>
-                  <select
+                  <select required
                     name="pet_weight"
                     value={appointmentData.pet_weight}
                     onChange={handleInputChange}
@@ -266,7 +286,7 @@ const Appointment = () => {
                   <label>
                     Độ tuổi <span className="icon-required">*</span>
                   </label>
-                  <select
+                  <select required
                     name="pet_age"
                     value={appointmentData.pet_age}
                     onChange={handleInputChange}
@@ -285,7 +305,7 @@ const Appointment = () => {
                   <label>
                     Thời gian đặt hẹn <span className="icon-required">*</span>
                   </label>
-                  <input
+                  <input required
                     type="datetime-local"
                     name="appointment_date"
                     value={appointmentData.appointment_date}
@@ -300,7 +320,7 @@ const Appointment = () => {
 
                 <div className="input-group">
                   <label>Ghi chú</label>
-                  <textarea
+                  <textarea required
                     name="notes"
                     value={appointmentData.notes}
                     onChange={handleInputChange}

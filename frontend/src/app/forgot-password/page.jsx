@@ -22,7 +22,13 @@ export default function ForgotPass() {
   const handleForgot = async (e) => {
     e.preventDefault();
     setEmailError("");
-
+  Swal.fire({
+    title: "Đang xử lý...",
+    text: "Vui lòng đợi Petsister trong giây lát nhé!",
+    didOpen: ()=>{
+      Swal.showLoading()
+    }
+  })
     if (!validateEmail(email)) {
       setEmailError("Email không đúng định dạng.");
       return;
@@ -39,8 +45,7 @@ export default function ForgotPass() {
       Swal.fire({
         title: "Thành Công",
         icon: "success",
-        text: "Yêu cầu xác thực đã được gửi. Vui lòng kiểm tra hộp thư để lấy lại mật khẩu.",
-        timer: 3000,
+        html: "Yêu cầu quên mậy khẩu đã được gửi Vui lòng kiểm tra Gmail để lấy lại mật khẩu.<br><br>Lưu ý: Nếu không thấy Gmail trong hộp thư chính vui lòng kiểm tra thư rác",
         didClose: () => {
           router.push("/dang-nhap");
         },
@@ -58,11 +63,6 @@ export default function ForgotPass() {
       <main className="login-main">
     <div className="forgotpass-content">
       <div className="forgotpass-text">Quên mật khẩu</div>
-      {loading && (
-        <div className="forgotpass-overlay">
-          <ClipLoader size={60} color="#3498db" />
-        </div>
-      )}
       <form onSubmit={handleForgot}>
         <div className="forgotpass-field">
           <input

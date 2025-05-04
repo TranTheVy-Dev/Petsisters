@@ -11,15 +11,40 @@ import "@/app/admin/assets/css/style.css";
 import NavHead from "./components/head";
 import Dashboard from "./dashboard/page";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const customer = JSON.parse(localStorage.getItem("customer"));
 
 export default function AdminLayout({ children }) {
   checkIsAdmin();
   return (
     <div className="admin-layout">
-      <div class="d-flex min-vh-100">
+      <div className="d-flex min-vh-100">
         <Sidebar></Sidebar>
-        <div class="w-100">
+        <div className="w-100">
           <NavHead></NavHead>
           {children}
         </div>

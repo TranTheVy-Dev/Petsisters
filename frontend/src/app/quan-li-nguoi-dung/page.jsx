@@ -324,15 +324,23 @@ fetchdatappoint();
               <table className="table">
                 <thead className="thead">
                   <tr>
-                    <th>Tên Dịch Vụ</th>
-                    <th>Ngày đặt</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
+                    <th style={{ width: '20%' }}>Hình ảnh</th>
+                    <th style={{ width: '20%' }}>Tên</th>
+                    <th style={{ width: '20%' }}>Ngày đặt</th>
+                    <th style={{ width: '20%' }}>Tổng tiền</th>
+                    <th style={{ width: '30%' }}>Trạng thái</th>
                   </tr>
                 </thead>
                 <tbody>
                   {appointment.map((appoint) => (
                     <tr key={appoint.id}>
+                      <td>
+                        <img 
+                          src={appoint.service.image_url || "https://res.cloudinary.com/dmped9z6o/image/upload/v1734469527/petsisters/images/avatar/default_avatart.png"} 
+                          alt={appoint.service.service_name}
+                          style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '50%' }}
+                        />
+                      </td>
                       <td>{appoint.service.service_name}</td>
                       <td>
                         {new Date(appoint.created_at).toLocaleDateString(

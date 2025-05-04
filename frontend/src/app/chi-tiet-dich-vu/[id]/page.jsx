@@ -71,12 +71,6 @@ export default function ServiceDetail({ params }) {
           title: 'Thông báo',
           text: 'Bạn Phải đăng nhập mới sử dụng được dịch vụ này ',
           icon: 'info',
-          confirmButtonColor: 'YES',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          showCancelButton: false,
-          focusConfirm: true,
-          focusCancel: false,
           didClose: () => {
             router.push('/dang-nhap')
           }

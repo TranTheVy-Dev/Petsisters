@@ -52,6 +52,7 @@ class OrderController extends Controller
     {
         try {
             //Tạo mã Order
+        
             $request['order_code'] = Order::createOrderCode();
             // Xác thực dữ liệu đơn hàng
             $orderRequest = new OrderRequest($request->all());

@@ -111,7 +111,6 @@ class AuthController extends Controller
             return response()->json(['erro' => 'Token đã hết hạn hãy yêu cầu đặt mật khẩu lại.'], 404);
         };
         $customer = Customer::where('email', $passwordreset->email)->first();
-        var_dump('data of customer', $customer);
         if (!$customer) {
             return response()->json(['erro' => 'Không tìm thấy Email trong hệ thống PetSister'], 404);
         }

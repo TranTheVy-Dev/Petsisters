@@ -15,6 +15,7 @@ use App\Models\PriceList;
 use App\Models\Service;
 use DateTime;
 use Exception;
+use Illuminate\Support\Arr;
 
 class AppointmentController extends Controller
 {
@@ -36,8 +37,7 @@ class AppointmentController extends Controller
     public function getAppointmentByIdCustomer($id)
     {
         try {
-
-           $data = Appointment::with('service')->where('customer_id',$id)->get();
+            $data = Appointment::with('service')->where('customer_id', $id)->orderByDesc('created_at')->get();
             if ($data->isEmpty()) {
                 return $this->errorResponse("We don't have data with customer have ID: $id", 404);
             }
@@ -58,8 +58,6 @@ class AppointmentController extends Controller
 
             $day = $dateTime->format('w');
             $price_list =  $this->priceList($data);
-            var_dump($price_list);
-
             if ($price_list) {
                 $total_price = $day == 6
                     ? $price_list->price - (($price_list->price / 100) * 10)
@@ -84,6 +82,21 @@ class AppointmentController extends Controller
             // $appointment = $this->model->create($validatedData);
             $appointment = Appointment::create($validatedData);
             $service = Service::findOrFail($appointment->service_id);
+
+            // Send confirmation email
+            try {
+                Mail::send('emails.appointment_confirmation', [
+                    'appointment' => $appointment->load('customer'),
+                    'service' => $service
+                ], function ($message) use ($appointment) {
+                    $message->to($appointment->customer->email)
+                        ->subject('Xác nhận lịch hẹn - PetSisters');
+                });
+            } catch (Exception $e) {
+                return $this->errorResponse($e->getMessage(), 500);
+                // Log the email error but don't fail the appointment creation
+            }
+
             return $this->successResponse([
                 'appointment' => $appointment,
                 'total_price' => $total_price,

@@ -45,7 +45,7 @@ export default function ForgotPass() {
       Swal.fire({
         title: "Thành Công",
         icon: "success",
-        html: "Yêu cầu quên mậy khẩu đã được gửi Vui lòng kiểm tra Gmail để lấy lại mật khẩu.<br><br>Lưu ý: Nếu không thấy Gmail trong hộp thư chính vui lòng kiểm tra thư rác",
+        html: "Yêu cầu quên mật khẩu đã được gửi.<br><br> Vui lòng kiểm tra Gmail để lấy lại mật khẩu.<br><br>Lưu ý: Nếu không thấy Gmail trong hộp thư chính vui lòng kiểm tra thư rác",
         didClose: () => {
           router.push("/dang-nhap");
         },
@@ -53,8 +53,8 @@ export default function ForgotPass() {
     } catch (error) {
       setLoading(false);
       setEmailError(
-        "Email không tồn tại trong hệ thống. Vui lòng kiểm tra lại."
-      );
+        "Email không tồn tại trong hệ thống. Vui lòng kiểm tra lại.");
+        Swal.close()
     }
   };
 

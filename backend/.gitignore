@@ -1,63 +1,87 @@
-# compiled output
-/dist
-/node_modules
-/build
+# Environment files
+.env
+.env.example
+.env.backup
+.env.production
+.env.local
+.env.*.local
 
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-
-# Composer specific
+# Dependencies
 /vendor
+/node_modules
+package-lock.json
 composer.lock
 
-# OS
-.DS_Store
-
-# Tests
-/coverage
-/.nyc_output
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Logs
+/storage/*.key
+/storage/logs/*
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# dotenv environment variable files
-# .env
-# .env.development.local
-# .env.test.local
-# .env.production.local
-# .env.local
+# Cache and temporary files
+.phpunit.result.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.
 
+# Cache directories
+/bootstrap/cache/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/public/*
 
-# Composer specific
-vendor/
-# composer.lock
-# composer.json
+# Public storage
+/public/storage
+/public/hot
+/public/build
 
+# Testing
+/coverage
+.phpunit.cache
+.phpunit.result.cache
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Laravel specific
+/public/css
+/public/js
+/public/mix-manifest.json
+/public/build
+/public/hot
+
+# Composer
+composer.phar
+
+# Application specific
+/storage/*.key
+/storage/debugbar
+.env.testing
